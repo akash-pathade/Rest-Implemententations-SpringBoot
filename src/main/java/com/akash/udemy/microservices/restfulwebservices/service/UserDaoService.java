@@ -16,10 +16,10 @@ public class UserDaoService {
     private static int usersCount=4;
 
     static {
-        users.add(new User(1,"Akash",new Date().toString()));
-        users.add(new User(2,"Ashish",new Date().toString()));
-        users.add(new User(3,"Ozas",new Date().toString()));
-        users.add(new User(4,"Rishav",new Date().toString()));
+        users.add(new User(1,"Akash",new Date()));
+        users.add(new User(2,"Ashish",new Date()));
+        users.add(new User(3,"Ozas",new Date()));
+        users.add(new User(4,"Rishav",new Date()));
 
     }
 

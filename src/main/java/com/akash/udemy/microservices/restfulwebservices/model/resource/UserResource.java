@@ -33,7 +33,7 @@ public class UserResource {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<Object> createUser(@RequestBody User user){
+    public ResponseEntity<Object> createUser( @RequestBody User user){
         User savedUser = service.save(user);
 
 //        We want to send URI of the newly created user
