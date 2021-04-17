@@ -48,6 +48,8 @@ public class UserDaoService {
         User userToDelete = findOne(id);
         final boolean b = users.removeIf(user -> user.getId().equals(id));
         return userToDelete;
+
+
     }
 
 }
