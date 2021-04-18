@@ -4,10 +4,14 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 import com.akash.udemy.microservices.restfulwebservices.model.User;
 import com.akash.udemy.microservices.restfulwebservices.exception.UserNotFoundException;
 import com.akash.udemy.microservices.restfulwebservices.service.UserDaoService;
+import com.fasterxml.jackson.databind.ser.FilterProvider;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -21,13 +25,25 @@ public class UserResource {
     @Autowired
     private UserDaoService service;
 
+//  DynamicFiltering: Send only id and name
     @GetMapping("/users")
-    public List<User> getAllUsers(){
-        return service.findAll();
+    public MappingJacksonValue getAllUsers(){
+
+
+        List<User> users = service.findAll();
+
+        //      DYNAMIC FILTERING
+        MappingJacksonValue mapping = new MappingJacksonValue(users);
+        SimpleBeanPropertyFilter filter=SimpleBeanPropertyFilter.filterOutAllExcept("name","id");
+        FilterProvider filters= new SimpleFilterProvider().addFilter("UserFilter",filter);
+        mapping.setFilters(filters);
+
+        return mapping;
     }
 
+//  DynamicFiltering: Send only birthdate and name
     @GetMapping("/users/{id}")
-    public Resource<User> getUserById(@PathVariable int id){
+    public MappingJacksonValue getUserById(@PathVariable int id){
 
         User user = service.findOne(id);
         if(user==null){
@@ -39,7 +55,14 @@ public class UserResource {
         ControllerLinkBuilder link = linkTo(methodOn(this.getClass()).getAllUsers());
         userResource.add(link.withRel("all-users"));
 
-        return userResource;
+        //      DYNAMIC FILTERING
+        MappingJacksonValue mapping = new MappingJacksonValue(userResource);
+        SimpleBeanPropertyFilter filter=SimpleBeanPropertyFilter.filterOutAllExcept("name","birthDate");
+        FilterProvider filters= new SimpleFilterProvider().addFilter("UserFilter",filter);
+        mapping.setFilters(filters);
+
+        return mapping;
+
     }
 
     @PostMapping("/users")

@@ -1,5 +1,6 @@
 package com.akash.udemy.microservices.restfulwebservices.model;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonFilter("UserFilter")
 public class User {
 
     private Integer id;
