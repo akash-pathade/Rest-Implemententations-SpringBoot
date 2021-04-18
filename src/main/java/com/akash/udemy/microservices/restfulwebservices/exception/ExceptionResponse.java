@@ -1,4 +1,4 @@
-package com.akash.udemy.microservices.restfulwebservices.model.exception;
+package com.akash.udemy.microservices.restfulwebservices.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

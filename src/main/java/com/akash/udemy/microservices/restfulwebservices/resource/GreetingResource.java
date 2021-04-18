@@ -1,14 +1,10 @@
-package com.akash.udemy.microservices.restfulwebservices.model.resource;
+package com.akash.udemy.microservices.restfulwebservices.resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.i18n.LocaleContextResolver;
-
-import java.util.Locale;
 
 @RestController
 public class GreetingResource {

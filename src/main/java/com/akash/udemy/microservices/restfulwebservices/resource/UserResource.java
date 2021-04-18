@@ -1,8 +1,8 @@
-package com.akash.udemy.microservices.restfulwebservices.model.resource;
+package com.akash.udemy.microservices.restfulwebservices.resource;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 
 import com.akash.udemy.microservices.restfulwebservices.model.User;
-import com.akash.udemy.microservices.restfulwebservices.model.exception.UserNotFoundException;
+import com.akash.udemy.microservices.restfulwebservices.exception.UserNotFoundException;
 import com.akash.udemy.microservices.restfulwebservices.service.UserDaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
