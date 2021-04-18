@@ -6,6 +6,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PersonController {
 
+/*
+Factors--------
+    URI pollution
+    Misuse of HTTP Headers
+    Caching
+    Browser Executable
+    API Documentation
+*/
+
 
     //URI Versioning
     @GetMapping("v1/person")
