@@ -40,6 +40,7 @@ public class UserResource {
 
         return mapping;
     }
+    //test
 
 //  DynamicFiltering: Send only birthdate and name
     @GetMapping("/users/{id}")
